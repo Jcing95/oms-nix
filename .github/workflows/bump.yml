@@ -16,6 +16,9 @@ jobs:
 
       - uses: DeterminateSystems/nix-installer-action@main
 
+      - name: Update nixpkgs input
+        run: nix flake update
+
       - name: Update oms
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -27,13 +30,16 @@ jobs:
       - id: cpr
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: "bump oms to latest release"
+          commit-message: "chore: bump oms and refresh flake.lock"
           title: "chore: bump oms"
           body: |
-            Automated bump produced by `nix-update`.
+            Automated bump produced by `nix flake update` + `nix-update`.
 
-            Updates `package.nix` to the latest upstream release of
-            [`codesphere-cloud/oms`](https://github.com/codesphere-cloud/oms).
+            - Refreshes `flake.lock` (nixpkgs)
+            - Updates `package.nix` to the latest upstream release of
+              [`codesphere-cloud/oms`](https://github.com/codesphere-cloud/oms)
+
+            Build verified with `nix build .#default` before the PR was opened.
           branch: bump-oms
           delete-branch: true
           labels: |
