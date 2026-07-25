@@ -8,16 +8,16 @@
 
 buildGoModule (finalAttrs: {
   pname = "oms";
-  version = "1.266.0";
+  version = "1.267.0";
 
   src = fetchFromGitHub {
     owner = "codesphere-cloud";
     repo = "oms";
     rev = "v${finalAttrs.version}";
-    hash = "sha256-SGro413Qa5dZGiT2M+6E9ymk6NrXzr7lqSSxklUCtkw=";
+    hash = "sha256-xfTXfUwPxy6d7m7BNCmSzyjyqp6CCl8xYCqsSnTwcOs=";
   };
 
-  vendorHash = "sha256-RM1Ds6nb3AmoLJFEMizCrNyrlYwDdoZn7Y+1j5ABcVE=";
+  vendorHash = "sha256-R/N6QBGryyPPx1iCDdwqOsVdqcPu6T6GBTfj5tzklhs=";
 
   subPackages = [ "cli" ];
 
